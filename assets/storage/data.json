@@ -1,0 +1,466 @@
+[
+  {
+    "id": "1",
+    "img": "assets/images/books.png",
+    "title": "Раздел 1",
+    "units": [
+      {
+        "id": "1.1",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ",
+        "lecturePath": "buildLec",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          },
+          {
+            "question": "Быз",
+            "correctAnswer": "даригер емеспыз",
+            "answers": ["даригер емеспыз", "оқушылар емес", "ауылда емес"],
+            "type": "dd"
+          }
+        ]
+      },
+      {
+        "id": "1.2",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ (СҰРАҚ)",
+        "lecturePath": "buildLecture12",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.3",
+        "title": "-МЫЗ/-МІЗ/ -ЛАР/-ЛЕР/-ДАР/-ДЕР/-ТАР/-ТЕР",
+        "lecturePath": "buildLecture13",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.4",
+        "title": "ІСТЕП ЖАТЫРМЫН/ІСТЕП ЖАТҚАН ЖОҚПЫН",
+        "lecturePath": "buildLecture14",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.5",
+        "title": "ІСТЕП ЖАТЫРСЫҢ БА?",
+        "lecturePath": "buildLecture15",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "img": "assets/images/backpack.png",
+    "title": "Раздел 2",
+    "units": [
+      {
+        "id": "1.1",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ",
+        "lecturePath": "assets/storage/1-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          },
+          {
+            "question": "Быз",
+            "correctAnswer": "даригер емеспыз",
+            "answers": ["даригер емеспыз", "оқушылар емес", "ауылда емес"],
+            "type": "dd"
+          }
+        ]
+      },
+      {
+        "id": "1.2",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ (СҰРАҚ)",
+        "lecturePath": "assets/storage/2-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.3",
+        "title": "-МЫЗ/-МІЗ/ -ЛАР/-ЛЕР/-ДАР/-ДЕР/-ТАР/-ТЕР",
+        "lecturePath": "assets/storage/3-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.4",
+        "title": "ІСТЕП ЖАТЫРМЫН/ІСТЕП ЖАТҚАН ЖОҚПЫН",
+        "lecturePath": "assets/storage/4-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "img": "assets/images/geography.png",
+    "title": "Раздел 3",
+    "units": [
+      {
+        "id": "1.1",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ",
+        "lecturePath": "assets/storage/1-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          },
+          {
+            "question": "Быз",
+            "correctAnswer": "даригер емеспыз",
+            "answers": ["даригер емеспыз", "оқушылар емес", "ауылда емес"],
+            "type": "dd"
+          }
+        ]
+      },
+      {
+        "id": "1.2",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ (СҰРАҚ)",
+        "lecturePath": "assets/storage/2-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.3",
+        "title": "-МЫЗ/-МІЗ/ -ЛАР/-ЛЕР/-ДАР/-ДЕР/-ТАР/-ТЕР",
+        "lecturePath": "assets/storage/3-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.4",
+        "title": "ІСТЕП ЖАТЫРМЫН/ІСТЕП ЖАТҚАН ЖОҚПЫН",
+        "lecturePath": "assets/storage/4-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "img": "assets/images/backpuk.png",
+    "title": "Раздел 4",
+    "units": [
+      {
+        "id": "1.1",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ",
+        "lecturePath": "assets/storage/1-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          },
+          {
+            "question": "Быз",
+            "correctAnswer": "даригер емеспыз",
+            "answers": ["даригер емеспыз", "оқушылар емес", "ауылда емес"],
+            "type": "dd"
+          }
+        ]
+      },
+      {
+        "id": "1.2",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ (СҰРАҚ)",
+        "lecturePath": "assets/storage/2-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.3",
+        "title": "-МЫЗ/-МІЗ/ -ЛАР/-ЛЕР/-ДАР/-ДЕР/-ТАР/-ТЕР",
+        "lecturePath": "assets/storage/3-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.4",
+        "title": "ІСТЕП ЖАТЫРМЫН/ІСТЕП ЖАТҚАН ЖОҚПЫН",
+        "lecturePath": "assets/storage/4-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "img": "assets/images/student.png",
+    "title": "Раздел 5",
+    "units": [
+      {
+        "id": "1.1",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ",
+        "lecturePath": "assets/storage/1-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          },
+          {
+            "question": "Быз",
+            "correctAnswer": "даригер емеспыз",
+            "answers": ["даригер емеспыз", "оқушылар емес", "ауылда емес"],
+            "type": "dd"
+          }
+        ]
+      },
+      {
+        "id": "1.2",
+        "title": "-МЫН/МІН/-СЫҢ/-СІҢ/-СЫЗ/-СІЗ (СҰРАҚ)",
+        "lecturePath": "assets/storage/2-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.3",
+        "title": "-МЫЗ/-МІЗ/ -ЛАР/-ЛЕР/-ДАР/-ДЕР/-ТАР/-ТЕР",
+        "lecturePath": "assets/storage/3-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      },
+      {
+        "id": "1.4",
+        "title": "ІСТЕП ЖАТЫРМЫН/ІСТЕП ЖАТҚАН ЖОҚПЫН",
+        "lecturePath": "assets/storage/4-unit.pdf",
+        "exercises": [
+          {
+            "question": "Мен АйдарБЫН",
+            "correctAnswer": "Дурыс емес",
+            "answers": [],
+            "type": "tf"
+          },
+          {
+            "question": "Бекжан доп __ __.",
+            "correctAnswer": "ойнап жур",
+            "answers": ["ойнау жур","ойын отыр","ойнап жур","ойнап журу"],
+            "type": "4"
+          }
+        ]
+      }
+    ]
+  }
+]
