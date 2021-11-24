@@ -1,4 +1,6 @@
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/auth_reg/services/achievement_service.dart';
+import 'package:apc_project/ui/auth_reg/services/progress_service.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +8,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class InfoBody extends StatelessWidget {
-  const InfoBody({Key? key}) : super(key: key);
+
+  int score;
+  var achievements = [];
+  var userAchievements = [];
+
+  InfoBody({Key? key, required this.score, required this.achievements, required this.userAchievements}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,15 +43,16 @@ class InfoBody extends StatelessWidget {
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.w),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.star_rounded,
                               size: 22.w,
                               color: primary,
                             ),
+                            SizedBox(width: 10.w,),
                             Text(
-                              "2222",
+                            score.toString(),
                               style: GoogleFonts.roboto(
                                   color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
                             )
@@ -105,7 +113,7 @@ class InfoBody extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.r)),
                       child: Center(
                           child: Text(
-                        "5/50",
+                         userAchievements.length.toString() + "/" + achievements.length.toString(),
                         style: GoogleFonts.roboto(
                             color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
                       )),

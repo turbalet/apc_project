@@ -1,5 +1,6 @@
 import 'package:apc_project/ui/auth_reg/services/models/user.dart';
 import 'package:apc_project/ui/home/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,10 @@ class AuthService{
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
+
+  User? getCurrentUser() {
+    return _firebaseAuth.currentUser;
+  }
 
   Future<void> googleSignIn(BuildContext context) async {
     try {

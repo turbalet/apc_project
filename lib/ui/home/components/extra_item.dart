@@ -5,8 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ExtraItem extends StatelessWidget {
 
+  String text;
+  String img;
 
-  ExtraItem({Key? key}) : super(key: key);
+  ExtraItem({Key? key, required this.text, required this.img}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +23,10 @@ class ExtraItem extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 11.h, horizontal: 22.w),
           child: Row(
             children: [
-              Image(image: AssetImage("assets/images/umbrella.png"), width: 50.w, height: 55.h,),
+              Image(image: AssetImage(img), width: 50.w, height: 55.h,),
               SizedBox(width: 15.w),
               Text(
-                "қолшатыр\n[qol:shaty’r]",
+                text,
                 style: GoogleFonts.roboto(fontWeight: FontWeight.w600, fontSize: 16.sp, color: CupertinoColors.white),
               )
             ],

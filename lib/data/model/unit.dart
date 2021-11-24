@@ -1,3 +1,5 @@
+import 'package:apc_project/data/storage.dart';
+
 import 'exercise.dart';
 
 class Unit {
@@ -13,6 +15,14 @@ class Unit {
     required this.exercises
   });
 
+
+  static getUnit(String id) {
+    var unit;
+    for (var element in Storage.chapterList.chapters) {
+      unit = element.units.where((element) => element.id.contains(id)).toList();
+    }
+    return unit[0];
+  }
 
   factory Unit.fromJson(Map<String, dynamic> parsedJson) {
 

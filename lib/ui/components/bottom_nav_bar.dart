@@ -1,4 +1,5 @@
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/guide/guid_page.dart';
 import 'package:apc_project/ui/home/home_page.dart';
 import 'package:apc_project/ui/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,11 +14,13 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       onTap: (value) {
         if (value == 0) Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+        if (value == 1) Navigator.push(context, MaterialPageRoute(builder: (context) => GuidPage()));
         if (value == 2) Navigator.push(context, MaterialPageRoute(builder: (context) => ProfilePage()));
       },
       iconSize: 30.w,
       backgroundColor: backgroundItem,
       items: [
+
         BottomNavigationBarItem(
           title: Text(""),
           icon: Icon(

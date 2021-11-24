@@ -2,6 +2,8 @@ import 'package:apc_project/data/model/chapter.dart';
 import 'package:apc_project/foundation/constants.dart';
 import 'package:apc_project/ui/components/bottom_nav_bar.dart';
 import 'package:apc_project/ui/lecture/lecture_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +21,7 @@ class ChapterPage extends StatefulWidget {
 
 class _ChapterPageState extends State<ChapterPage> {
 
-
+  var progress = <String, dynamic>{ "score": "", "unit" : "", "chapter": ""};
   List<bool> show = [];
   var height = 207.h;
 
@@ -83,7 +85,15 @@ class _ChapterPageState extends State<ChapterPage> {
                     ),
                     Spacer(flex: 15),
                     Icon(
-                      Icons.check_circle_outline,
+                      (() {
+                        if(double.parse(progress['unit']) > double.parse(widget.chapter.units[index].id)) {
+                          return Icons.check_circle_outline;
+                        } else if (double.parse(progress['unit']) == double.parse(widget.chapter.units[index].id)) {
+                          return Icons.play_circle_outline;
+                        } else {
+                          return Icons.lock_outline_rounded;
+                        }
+                      }()),
                       color: Colors.white,
                       size: 30.w,
                     )
@@ -152,6 +162,15 @@ class _ChapterPageState extends State<ChapterPage> {
   }
 
   _buildBody() {
+
+    final firestoreInstance = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+    firestoreInstance.collection("progresses").doc(user!.uid).get().then((value){
+      setState(() {
+        progress = value.data()!;
+      });
+    });
+
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 31.w),
@@ -195,7 +214,7 @@ class _ChapterPageState extends State<ChapterPage> {
                           color: Colors.white,
                         ),
                         Text(
-                          "2222",
+                          progress['score'].toString(),
                           style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.sp),
                         )
                       ],
@@ -222,7 +241,7 @@ class _ChapterPageState extends State<ChapterPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Шылаулар",
+                          "Жалгаулар",
                           style: GoogleFonts.roboto(fontSize: 23.sp, fontWeight: FontWeight.bold, color: Colors.white),
                         ),
                         SizedBox(height: 10.h),

@@ -4,6 +4,7 @@ import 'package:apc_project/ui/auth_reg/screens/verify.dart';
 import 'package:apc_project/ui/auth_reg/services/auth_service.dart';
 import 'package:apc_project/ui/auth_reg/services/models/user.dart';
 import 'package:apc_project/ui/home/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -237,7 +238,7 @@ class AuthorizationRegistration extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 10, top: 10),
-                    child: _inputAuth("Почта", _emailController, false,2),
+                    child: _inputAuth("Почта", _newEmailController, false,2),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 10),
@@ -379,6 +380,15 @@ class AuthorizationRegistration extends StatelessWidget {
                   fontSize: 16.0
               );
             } else {
+              final firestoreInstance = FirebaseFirestore.instance;
+              firestoreInstance.collection("users").add(
+                  {
+                    "name" : newName,
+                    "surname": newLastName
+                    }
+                  ).then((value){
+                print(value.id);
+              });
               Navigator.of(context1).pushReplacement(
                   MaterialPageRoute(builder: (context) => VerifyScreen()));
             }
