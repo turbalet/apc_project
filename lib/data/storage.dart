@@ -6,7 +6,7 @@ import 'model/chapter.dart';
 
 class Storage {
 
-  static ChapterList chapterList = Null as ChapterList;
+  static ChapterList? chapterList;
 
   static void initialize() async {
     String jsonUnits = await _loadUnitAsset();

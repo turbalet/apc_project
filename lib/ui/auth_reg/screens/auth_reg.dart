@@ -82,7 +82,7 @@ class AuthorizationRegistration extends StatelessWidget {
                           height: auth ? MediaQuery
                               .of(context)
                               .size
-                              .height * 0.65 : MediaQuery.of(context).size.height * 0.81,
+                              .height * 0.65 : MediaQuery.of(context).size.height * 0.86,
                           width: MediaQuery
                               .of(context)
                               .size
