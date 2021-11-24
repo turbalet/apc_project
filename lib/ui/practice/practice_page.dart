@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:apc_project/data/model/exercise.dart';
 import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
-import 'package:apc_project/ui/practice/scorePage.dart';
+import 'package:apc_project/ui/practice/score_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,9 +50,14 @@ class _PracticePageState extends State<PracticePage> {
     await Future.delayed(Duration(seconds: 1));
     setState(() {
       if (counter + 1 <= widget.unit.exercises.length) {
+        if (counter + 1 == widget.unit.exercises.length) {
+          Navigator.push(context, MaterialPageRoute(
+              builder: (context) => ScorePage(unit: widget.unit, score: score)));
+        }
         if (counter + 1 != widget.unit.exercises.length) {
           counter++;
         }
+
         streak++;
         score += 40 + ((streak >=5 ) ? 3*streak : 0);
       }
@@ -265,6 +270,7 @@ class _PracticePageState extends State<PracticePage> {
                 child:
                 DragTarget<String>(
                   builder: (context, acceptedItems, rejectedItems) => Container(
+
                     child: Center(
                       child:Text(received,
                           style: TextStyle(
@@ -274,10 +280,13 @@ class _PracticePageState extends State<PracticePage> {
                           )),
                     ),
                     width: 100,
-                    height: 3,
+                    height: 10,
                     decoration: BoxDecoration(
-                      color: Color(0xFFFFFFFF),
-                      borderRadius: BorderRadius.circular(25),
+
+                      border: Border(
+                        bottom: BorderSide(color: white,width: 3.h),
+
+                      ),
                     ),
                   ),
                   onAccept: (receivedItem) {

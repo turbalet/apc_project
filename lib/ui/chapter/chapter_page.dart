@@ -197,7 +197,6 @@ class _ChapterPageState extends State<ChapterPage> {
                 ),
                 Container(
                   height: 45.h,
-                  width: 122.w,
                   decoration: BoxDecoration(
                       color: backgroundItem,
                       borderRadius: BorderRadius.circular(30.r)
@@ -206,13 +205,13 @@ class _ChapterPageState extends State<ChapterPage> {
                     padding: EdgeInsets.symmetric(horizontal: 26.w),
                     child:
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
                           Icons.star_rounded,
                           size: 22.w,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 10.w,),
                         Text(
                           progress['score'].toString(),
                           style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.sp),

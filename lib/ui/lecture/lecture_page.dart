@@ -1,5 +1,9 @@
 import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/practice/practice_page.dart';
+import 'package:apc_project/ui/practice/score_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,19 +28,28 @@ class LecturePage extends StatefulWidget {
 
 class _LecturePageState extends State<LecturePage> {
 
-  buildLec(String unit){
-    switch(unit){
+  var progress = <String, dynamic>{ "score": "", "unit" : "", "chapter": ""};
+
+
+  buildLec(Unit unit){
+    switch(unit.id){
       case "1.1":
-        buildLec1();
-        break;
+        return buildLec1();
       case "1.2":
-        buildLec2();
-        break;
+        return buildLec2();
     }
   }
 
 
   buildLec1() {
+
+    final firestoreInstance = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+    firestoreInstance.collection("progresses").doc(user!.uid).get().then((value){
+      setState(() {
+        progress = value.data()!;
+      });
+    });
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -56,14 +69,13 @@ class _LecturePageState extends State<LecturePage> {
                     ),
                     SizedBox(width: 15.w,),
                     Text(
-                      "Глава 1 Урок 2",
+                      "Глава 1 Урок 1",
                       style: GoogleFonts.nunito(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24.sp),
                     ),
                   ],
                 ),
                 Container(
                   height: 45.h,
-                  width: 122.w,
                   decoration: BoxDecoration(
                       color: backgroundItem,
                       borderRadius: BorderRadius.circular(30.r)
@@ -72,15 +84,15 @@ class _LecturePageState extends State<LecturePage> {
                     padding: EdgeInsets.symmetric(horizontal: 26.w),
                     child:
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
                           Icons.star_rounded,
                           size: 22.w,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 10.w),
                         Text(
-                          "2222",
+                          progress['score'].toString(),
                           style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.sp),
                         )
                       ],
@@ -302,17 +314,24 @@ class _LecturePageState extends State<LecturePage> {
                   ),
                   SizedBox(height: 35.h,),
                   Center(
-                    child: Container(
-                      width: 240.w,
-                      height: 52.h,
-                      decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(20.r)
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Перейти к практике",
-                          style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => PracticePage(unit: widget.unit)));
+                      },
+                      child: Container(
+                        width: 240.w,
+                        height: 52.h,
+                        decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(20.r)
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Перейти к практике",
+                            style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
@@ -331,6 +350,13 @@ class _LecturePageState extends State<LecturePage> {
   //   return instanceMirror.invoke(widget.unit.lecturePath, []);
   // }
   buildLec2() {
+    final firestoreInstance = FirebaseFirestore.instance;
+    var user = FirebaseAuth.instance.currentUser;
+    firestoreInstance.collection("progresses").doc(user!.uid).get().then((value){
+      setState(() {
+        progress = value.data()!;
+      });
+    });
     return SafeArea(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.w),
@@ -357,7 +383,6 @@ class _LecturePageState extends State<LecturePage> {
                 ),
                 Container(
                   height: 45.h,
-                  width: 122.w,
                   decoration: BoxDecoration(
                       color: backgroundItem,
                       borderRadius: BorderRadius.circular(30.r)
@@ -366,15 +391,15 @@ class _LecturePageState extends State<LecturePage> {
                     padding: EdgeInsets.symmetric(horizontal: 26.w),
                     child:
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Icon(
                           Icons.star_rounded,
                           size: 22.w,
                           color: Colors.white,
                         ),
+                        SizedBox(width: 10.w),
                         Text(
-                          "2222",
+                          progress['score'].toString(),
                           style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.sp),
                         )
                       ],
@@ -412,10 +437,15 @@ class _LecturePageState extends State<LecturePage> {
                   SizedBox(height: 28.h),
                   Center(
                     child: Image(
-                      image: AssetImage("assets/images/un1.png"),
-                      width: 169.w,
-                      height: 169.w,
+                      image: AssetImage("assets/images/lec2.png"),
+                      width: 269.w,
+                      height: 269.w,
                     ),
+                  ),
+                  SizedBox(height: 28.h),
+                  Text(
+                    "- Атың кім?\n- Айбек\n- Мен –  жиырма екыдемын\n- Үйленгенсің бе?.\n- Жоқ, мен бойдақпын.\n- Жасың қаншада?\n- 25\n- Сен студентсің бе?\n- Иә, студентпін",
+                    style: TextStyle(fontSize: 20.sp, color: Colors.white),
                   ),
                   SizedBox(height: 28.h),
                   Text(
@@ -695,17 +725,23 @@ class _LecturePageState extends State<LecturePage> {
           ]),
                   SizedBox(height: 35.h,),
                   Center(
-                    child: Container(
-                      width: 240.w,
-                      height: 52.h,
-                      decoration: BoxDecoration(
-                          color: primary,
-                          borderRadius: BorderRadius.circular(20.r)
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Перейти к практике",
-                          style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                            builder: (context) => PracticePage(unit: widget.unit)));
+                      },
+                      child: Container(
+                        width: 240.w,
+                        height: 52.h,
+                        decoration: BoxDecoration(
+                            color: primary,
+                            borderRadius: BorderRadius.circular(20.r)
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Перейти к практике",
+                            style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),
@@ -728,7 +764,7 @@ class _LecturePageState extends State<LecturePage> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-        body: SingleChildScrollView(child:  buildLec(),) // child: unit.getContname()
+        body: SingleChildScrollView(child:  buildLec(widget.unit),) // child: unit.getContname()
     );
   }
 }

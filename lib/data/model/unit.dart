@@ -17,6 +17,7 @@ class Unit {
 
 
   static getUnit(String id) {
+    print(id);
     var unit;
     for (var element in Storage.chapterList!.chapters) {
       unit = element.units.where((element) => element.id.contains(id)).toList();
