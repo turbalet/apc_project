@@ -24,14 +24,12 @@ class LecturePage extends StatefulWidget {
 
 class _LecturePageState extends State<LecturePage> {
 
-  buildLec(String unit){
-    switch(unit){
+  buildLec(Unit unit){
+    switch(unit.id){
       case "1.1":
-        buildLec1();
-        break;
+        return buildLec1();
       case "1.2":
-        buildLec2();
-        break;
+        return buildLec2();
     }
   }
 
@@ -412,10 +410,15 @@ class _LecturePageState extends State<LecturePage> {
                   SizedBox(height: 28.h),
                   Center(
                     child: Image(
-                      image: AssetImage("assets/images/un1.png"),
-                      width: 169.w,
-                      height: 169.w,
+                      image: AssetImage("assets/images/lec2.png"),
+                      width: 269.w,
+                      height: 269.w,
                     ),
+                  ),
+                  SizedBox(height: 28.h),
+                  Text(
+                    "- Атың кім?\n- Айбек\n- Мен –  жиырма екыдемын\n- Үйленгенсің бе?.\n- Жоқ, мен бойдақпын.\n- Жасың қаншада?\n- 25\n- Сен студентсің бе?\n- Иә, студентпін",
+                    style: TextStyle(fontSize: 20.sp, color: Colors.white),
                   ),
                   SizedBox(height: 28.h),
                   Text(
@@ -728,7 +731,7 @@ class _LecturePageState extends State<LecturePage> {
 
     return Scaffold(
       backgroundColor: backgroundColor,
-        body: SingleChildScrollView(child:  buildLec(),) // child: unit.getContname()
+        body: SingleChildScrollView(child:  buildLec(widget.unit),) // child: unit.getContname()
     );
   }
 }
