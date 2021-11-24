@@ -12,6 +12,6 @@ const progressBorder = Color(0xB8212020);
 const leaveGrey = Color(0x9E6F737B);
 const leaveBackground = Color(0x826F737B);
 const white2 = Color(0xABFFFFFF);
-const whiteScore = Color(0x30FFFFFF);
+const whiteScore = Color(0xDFFFFFF);
 const whiteLock = Color(0x8FFFFFFF);
 const whiteInputBorder = Color(0x66FFFFFF);

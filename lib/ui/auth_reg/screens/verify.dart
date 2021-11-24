@@ -59,10 +59,6 @@ class _VerifyScreenState extends State<VerifyScreen> {
               ),
               Container(
                 padding: const EdgeInsets.only(top: 10),
-                decoration: BoxDecoration(
-                  color: backgroundColor,
-                  borderRadius: BorderRadius.circular(15)
-                ),
                 child: Column(
                   children: [
                     Text("Если в течении 1 минуты вы не получите письмо, пожалуйста повторите попытку",

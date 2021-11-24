@@ -81,7 +81,7 @@ class AuthorizationRegistration extends StatelessWidget {
                           height: auth ? MediaQuery
                               .of(context)
                               .size
-                              .height * 0.65 : MediaQuery.of(context).size.height * 0.81,
+                              .height * 0.65 : MediaQuery.of(context).size.height * 0.86,
                           width: MediaQuery
                               .of(context)
                               .size
@@ -237,7 +237,7 @@ class AuthorizationRegistration extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(bottom: 10, top: 10),
-                    child: _inputAuth("Почта", _emailController, false,2),
+                    child: _inputAuth("Почта", _newEmailController, false,2),
                   ),
                   Padding(
                     padding: EdgeInsets.only(bottom: 10),
