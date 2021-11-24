@@ -1,6 +1,7 @@
 import 'package:apc_project/foundation/constants.dart';
 import 'package:apc_project/ui/auth_reg/services/achievement_service.dart';
 import 'package:apc_project/ui/auth_reg/services/progress_service.dart';
+import 'package:apc_project/ui/profile/components/achievements_body.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -95,30 +96,36 @@ class InfoBody extends StatelessWidget {
                 SizedBox(
                   width: 43.w,
                 ),
-                Column(
-                  children: [
-                    Text(
-                      "Достижения",
-                      style: GoogleFonts.roboto(
-                          fontSize: 14.sp, color: Colors.white, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 11.h,
-                    ),
-                    Container(
-                      height: 61.h,
-                      width: 92.w,
-                      decoration: BoxDecoration(
-                          color: backgroundItem,
-                          borderRadius: BorderRadius.circular(20.r)),
-                      child: Center(
-                          child: Text(
-                         userAchievements.length.toString() + "/" + achievements.length.toString(),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => AchievementsBody(achievements: achievements,)));
+                  },
+                  child: Column(
+                    children: [
+                      Text(
+                        "Достижения",
                         style: GoogleFonts.roboto(
-                            color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
-                      )),
-                    )
-                  ],
+                            fontSize: 14.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 11.h,
+                      ),
+                      Container(
+                        height: 61.h,
+                        width: 92.w,
+                        decoration: BoxDecoration(
+                            color: backgroundItem,
+                            borderRadius: BorderRadius.circular(20.r)),
+                        child: Center(
+                            child: Text(
+                           userAchievements.length.toString() + "/" + achievements.length.toString(),
+                          style: GoogleFonts.roboto(
+                              color: Colors.white, fontSize: 18.sp, fontWeight: FontWeight.bold),
+                        )),
+                      )
+                    ],
+                  ),
                 )
               ],
             ),

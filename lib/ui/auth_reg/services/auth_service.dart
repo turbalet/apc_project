@@ -47,8 +47,21 @@ class AuthService{
 
   Future<UserModel?> registerWithEmailAndPassword(String email, String password) async{
     try{
+      final firestoreInstance = FirebaseFirestore.instance;
       UserCredential result = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
       User? user = result.user;
+      try {
+        firestoreInstance.collection("progresses").doc(user!.uid).set(
+            {
+              "unit": "1.1",
+              "score": 0
+            }
+        ).then((_) {
+          print("success!");
+        });
+      }catch(e) {
+        print("error creating progress");
+      }
       return UserModel.fromFirebase(user!);
     }catch(e){
       print(e);
