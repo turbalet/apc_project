@@ -1,5 +1,6 @@
 import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/practice/practice_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -302,18 +303,24 @@ class _LecturePageState extends State<LecturePage> {
                     style: GoogleFonts.nunito(fontSize: 20.sp, color: Colors.white),
                   ),
                   SizedBox(height: 35.h,),
-                  Center(
-                    child: Container(
-                      width: 240.w,
-                      height: 52.h,
-                      decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(20.r)
-                      ),
-                      child: Center(
-                        child: Text(
-                          "Перейти к практике",
-                          style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) => PracticePage(unit: widget.unit)));
+                    },
+                    child: Center(
+                      child: Container(
+                        width: 240.w,
+                        height: 52.h,
+                        decoration: BoxDecoration(
+                          color: primary,
+                          borderRadius: BorderRadius.circular(20.r)
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Перейти к практике",
+                            style: GoogleFonts.roboto(fontSize: 24.sp, color: Colors.white, fontWeight: FontWeight.bold),
+                          ),
                         ),
                       ),
                     ),

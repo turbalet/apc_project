@@ -20,7 +20,7 @@ class _GuidPageState extends State<GuidPage> {
   @override
   void initState() {
     super.initState();
-    for(int i=0;i<Storage.chapterList.chapters.length;i++){
+    for(int i=0;i<Storage.chapterList!.chapters.length;i++){
       show.add(false);
     }
   }
@@ -60,7 +60,7 @@ class _GuidPageState extends State<GuidPage> {
                 child: Row(
                   children: [
                     Text(
-                      "Часть " + Storage.chapterList.chapters[index].id,
+                      "Часть " + Storage.chapterList!.chapters[index].id,
                       style: GoogleFonts.roboto(fontSize: 22.sp, fontWeight: FontWeight.bold, color: Colors.white),
                     ),
                     Spacer(flex: 10),
@@ -91,13 +91,13 @@ class _GuidPageState extends State<GuidPage> {
               child: Column(
                 children: [
                   ListView.separated(
-                    itemCount: Storage.chapterList.chapters[index].units.length,
+                    itemCount: Storage.chapterList!.chapters[index].units.length,
                     separatorBuilder: (BuildContext context, int index) => SizedBox(height: 25.h),
                     shrinkWrap: true,
                     itemBuilder: (BuildContext context, int ind) => Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        Storage.chapterList.chapters[index].units[ind].id + ". " + Storage.chapterList.chapters[index].units[ind].title,
+                        Storage.chapterList!.chapters[index].units[ind].id + ". " + Storage.chapterList!.chapters[index].units[ind].title,
                         style: GoogleFonts.roboto(fontSize: 22.sp, color: white2),
                       ),
                     ),
@@ -200,7 +200,7 @@ class _GuidPageState extends State<GuidPage> {
             ),
             SizedBox(height: 45.h),
             ListView.separated(
-              itemCount: Storage.chapterList.chapters.length,
+              itemCount: Storage.chapterList!.chapters.length,
               separatorBuilder: (BuildContext context, int index) => SizedBox(height: 25.h),
               shrinkWrap: true,
               itemBuilder: (BuildContext context, int index) => _unitItem(index ),

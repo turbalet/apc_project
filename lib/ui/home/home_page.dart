@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   List getChaptersList() {
-    return Storage.chapterList.chapters;
+    return Storage.chapterList!.chapters;
   }
 
   List<Widget> _getChapters(items) {

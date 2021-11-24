@@ -1,25 +1,26 @@
+import 'dart:io';
+
 import 'package:apc_project/data/model/exercise.dart';
+import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
 import 'package:apc_project/ui/practice/scorePage.dart';
-import 'package:apc_project/ui/practice/services/storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import 'models/unit.dart';
 
 class PracticePage extends StatefulWidget {
-  PracticePage({Key? key}) : super(key: key);
+
+  Unit unit;
+  PracticePage({Key? key, required this.unit}) : super(key: key);
 
   @override
   _PracticePageState createState() => _PracticePageState();
 }
 
 class _PracticePageState extends State<PracticePage> {
-
-  Unit unit = Unit(id: 'e', title: 'e', lecturePath: 'e', exercises: [Exercise(question: 'e', correctAnswer: 'e', answers: ['e'], type: 'e')]);
 
 
 
@@ -31,12 +32,7 @@ class _PracticePageState extends State<PracticePage> {
 
   int maxNumber = 0;
 
-  getUnit(){
-    return Storage.unitList.units[0];
-  }
-
-
-  _positiveSnack() {
+  _positiveSnack(BuildContext context) async {
     final snackbar = SnackBar(
       content:
       Row(
@@ -46,13 +42,15 @@ class _PracticePageState extends State<PracticePage> {
           ((streak >= 5) ? Text("x" + streak.toString(), style: TextStyle(color: Colors.yellow, fontSize: 20, fontWeight: FontWeight.bold),) : SizedBox())
         ],
       ),
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 1000),
       backgroundColor: primary,
     );
-    Scaffold.of(context).showSnackBar(snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+
+    await Future.delayed(Duration(seconds: 1));
     setState(() {
-      if (counter + 1 <= unit.exercises.length) {
-        if (counter + 1 != unit.exercises.length) {
+      if (counter + 1 <= widget.unit.exercises.length) {
+        if (counter + 1 != widget.unit.exercises.length) {
           counter++;
         }
         streak++;
@@ -61,7 +59,7 @@ class _PracticePageState extends State<PracticePage> {
     });
   }
 
-  _negativeSnack() {
+  _negativeSnack(BuildContext context) {
     final snackbar = SnackBar(
       content: Text("Жауап кате!", style: TextStyle(fontSize: 20),),
       duration: Duration(milliseconds: 500),
@@ -71,43 +69,42 @@ class _PracticePageState extends State<PracticePage> {
       streak = 0;
       score -= 10;
     });
-    Scaffold.of(context).showSnackBar(snackbar);
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
   }
 
-  check(String choice) {
-    if (choice == unit.exercises[counter].correctAnswer) {
-      _positiveSnack();
+  check(String choice, BuildContext context) {
+    if (choice == widget.unit.exercises[counter].correctAnswer) {
+      _positiveSnack(context);
     } else {
-      _negativeSnack();
+      _negativeSnack(context);
     }
   }
 
-  _checkDrop(String input) {
-    if(unit.exercises[counter].correctAnswer == input) {
+  _checkDrop(String input, BuildContext context) {
+    if(widget.unit.exercises[counter].correctAnswer == input) {
 
       setState(() {
         accepting = true;
         received = input;
-        unit.exercises[counter].accepting = true;
-        unit.exercises[counter].received = input;
+        widget.unit.exercises[counter].accepting = true;
+        widget.unit.exercises[counter].received = input;
       });
 
-      _positiveSnack();
+      _positiveSnack(context);
     }else{
       setState(() {
         accepting = false;
         received = input;
-        unit.exercises[counter].accepting = false;
-        unit.exercises[counter].received = input;
+        widget.unit.exercises[counter].accepting = false;
+        widget.unit.exercises[counter].received = input;
       });
 
-      _negativeSnack();
+      _negativeSnack(context);
     }
   }
 
-  _buildBody() {
+  _buildBody(BuildContext context) {
     _initVariables();
-    unit = getUnit();
     return SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 27.w),
@@ -127,7 +124,7 @@ class _PracticePageState extends State<PracticePage> {
                       ),
                       SizedBox(width: 15.w,),
                       Text(
-                        "Глава 1 Урок 2",
+                        "Урок " + widget.unit.id,
                         style: GoogleFonts.nunito(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24.sp),
                       ),
                     ],
@@ -162,7 +159,7 @@ class _PracticePageState extends State<PracticePage> {
               ),
               SizedBox(height: 57.h),
               Container(
-                child: _buildProgress()
+                child: _buildProgress(context)
               )
             ],
           ),
@@ -170,7 +167,7 @@ class _PracticePageState extends State<PracticePage> {
     );
   }
 
-  _buildProgress(){
+  _buildProgress( BuildContext context){
     return Column(
       children: [
         Align(
@@ -200,13 +197,13 @@ class _PracticePageState extends State<PracticePage> {
           ],
         ),
         SizedBox(height: 50.h),
-        _buildQuestions(unit.exercises[counter].type),
+        _buildQuestions(widget.unit.exercises[counter].type, context),
         Container(
           child:
             Row(
               children: [
-                Expanded(child: Container(),),
-                _next(),
+                // Expanded(child: Container(),),
+                // _next(),
                 Expanded(child: Container(),),
               ],
             )
@@ -216,46 +213,46 @@ class _PracticePageState extends State<PracticePage> {
   }
 
 
-  _next(){
-    return ElevatedButton(
-        child: Text("Следующее",
-          style: TextStyle(
-              color: white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold
-          ),),
-        style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all<Color>(white),
-            backgroundColor: MaterialStateProperty.all<Color>(primaryWithOp),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                )
-            )
-        ),
-        onPressed: () {
-          if((counter+1)==maxNumber){
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => ScorePage(score: score)));
-          }
-          var counterOP = counter + 1;
-          counterOP += 1;
-            print(counterOP);
-            setState(() {});
-            }
-    );
-  }
+  // _next(){
+  //   return ElevatedButton(
+  //       child: Text("Следующее",
+  //         style: TextStyle(
+  //             color: white,
+  //             fontSize: 18,
+  //             fontWeight: FontWeight.bold
+  //         ),),
+  //       style: ButtonStyle(
+  //           foregroundColor: MaterialStateProperty.all<Color>(white),
+  //           backgroundColor: MaterialStateProperty.all<Color>(primaryWithOp),
+  //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //               RoundedRectangleBorder(
+  //                 borderRadius: BorderRadius.circular(10),
+  //               )
+  //           )
+  //       ),
+  //       onPressed: () {
+  //         if((counter+1)==maxNumber){
+  //           Navigator.of(context).pushReplacement(
+  //               MaterialPageRoute(builder: (context) => ScorePage(score: score)));
+  //         }
+  //         var counterOP = counter + 1;
+  //         counterOP += 1;
+  //           print(counterOP);
+  //           setState(() {});
+  //           }
+  //   );
+  // }
 
-  _buildDragAndDrop(){
+  _buildDragAndDrop( BuildContext context){
     return Container(
       padding: const EdgeInsets.only(left:15, right: 15),
       child: Column(
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            child: Text(unit.exercises[counter].question,
+            child: Text(widget.unit.exercises[counter].question,
                 style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 27,
                     fontWeight: FontWeight.bold,
                     color: white
                 )),
@@ -271,7 +268,7 @@ class _PracticePageState extends State<PracticePage> {
                     child: Center(
                       child:Text(received,
                           style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 27,
                               fontWeight: FontWeight.bold,
                               color: white
                           )),
@@ -284,7 +281,7 @@ class _PracticePageState extends State<PracticePage> {
                     ),
                   ),
                   onAccept: (receivedItem) {
-                    _checkDrop(receivedItem);
+                    _checkDrop(receivedItem, context);
                   },
                   onLeave: (receivedItem) {
 
@@ -301,48 +298,47 @@ class _PracticePageState extends State<PracticePage> {
                     Text("Сойлемди аякта",
                     style: TextStyle(
                       color: white,
-                      fontSize: 13
+                      fontSize: 17
                     )))),
           Container(
             padding: const EdgeInsets.only(top:35, bottom: 100),
             child: Align(
               alignment: Alignment.centerLeft,
-              child: ListView.builder
+              child: ListView.separated
                 (
+
                   shrinkWrap: true,
-                  itemCount: unit.exercises[counter].answers.length,
+                  itemCount: widget.unit.exercises[counter].answers.length,
                   itemBuilder: (BuildContext ctxt, int index) {
                     return Draggable<String>(
                           // Data is the value this Draggable stores.
-                          data: unit.exercises[counter].answers[index],
+                          data: widget.unit.exercises[counter].answers[index],
                           child: Container(
-                            height: 30,
-                            margin: EdgeInsets.only(right: 10),
-                            padding: EdgeInsets.only(right: 10, left: 10, top: 3, bottom: 3),
+                            width: 100.w,
+                            padding: EdgeInsets.all(15.w),
                             decoration: BoxDecoration(
                               color: primary,
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            child: Text(unit.exercises[counter].answers[index],
+                            child: Text(widget.unit.exercises[counter].answers[index],
                                 style: TextStyle(color: white, fontSize: 18)),
                           ),
                           childWhenDragging: Container(),
 
                           feedback: Container(
-                            height: 30,
-                            padding: EdgeInsets.only(right: 10, left: 10, top: 3, bottom: 3),
+                            padding: EdgeInsets.all(15.w),
                             decoration: BoxDecoration(
                               color: primary,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Align(
                               alignment: Alignment.center,
-                              child: Text(unit.exercises[counter].answers[index],
+                              child: Text(widget.unit.exercises[counter].answers[index],
                                   style: TextStyle(color: white, fontSize: 18, fontWeight: FontWeight.bold)),
                             ),
                           ),
                     );
-                  }
+                  }, separatorBuilder: (BuildContext context, int index) { return SizedBox(width: 20.w, height: 20.h); },
               )
 
 
@@ -353,16 +349,16 @@ class _PracticePageState extends State<PracticePage> {
     );
   }
 
-  _buildTrueFalse(){
+  _buildTrueFalse(BuildContext context){
     return Container(
         padding: const EdgeInsets.only(left:15, right: 15),
         child: Column(
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(unit.exercises[counter].question,
+                child: Text(widget.unit.exercises[counter].question,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 27,
                         fontWeight: FontWeight.bold,
                         color: white
                     )),
@@ -376,7 +372,7 @@ class _PracticePageState extends State<PracticePage> {
                       Text("Берилген сойлем акикат па?",
                           style: TextStyle(
                               color: white,
-                              fontSize: 13
+                              fontSize: 18
                           )))),
               Container(
                 padding: const EdgeInsets.only(bottom: 80),
@@ -384,8 +380,11 @@ class _PracticePageState extends State<PracticePage> {
                   children: [
                     Expanded(child: Container(),),
                     ElevatedButton(
-                      onPressed: () { check("Дурыс"); },
-                      child: const Image(image: AssetImage('assets/images/yes.png')),
+                      onPressed: () { check("Дурыс", context); },
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Image(image: AssetImage('assets/images/yes.png')),
+                      ),
                       style: ButtonStyle(
                           foregroundColor: MaterialStateProperty.all<Color>(white),
                           backgroundColor: MaterialStateProperty.all<Color>(backgroundItem),
@@ -398,8 +397,11 @@ class _PracticePageState extends State<PracticePage> {
                     ),
                     Expanded(child: Container(),),
                     ElevatedButton(
-                      onPressed: () { check("Дурыс емес"); },
-                      child:  const Image(image: AssetImage('assets/images/no.png')),
+                      onPressed: () { check("Дурыс емес", context); },
+                      child:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const Image(image: AssetImage('assets/images/no.png')),
+                      ),
                       style: ButtonStyle(
                           foregroundColor: MaterialStateProperty.all<Color>(white),
                           backgroundColor: MaterialStateProperty.all<Color>(backgroundItem),
@@ -420,16 +422,16 @@ class _PracticePageState extends State<PracticePage> {
     );
   }
 
-  _buildMultipleChoice(){
+  _buildMultipleChoice( BuildContext context){
     return Container(
         padding: const EdgeInsets.only(left:15, right: 15),
         child: Column(
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: Text(unit.exercises[counter].question,
+                child: Text(widget.unit.exercises[counter].question,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 27,
                         fontWeight: FontWeight.bold,
                         color: white
                     )),
@@ -443,13 +445,13 @@ class _PracticePageState extends State<PracticePage> {
                       Text("Берилген суракка дурыс жауапты аныкта",
                           style: TextStyle(
                               color: white,
-                              fontSize: 13
+                              fontSize: 15
                           )))),
               Container(
 
                 child: Column(
                   children: [
-                    _getAnswers(),
+                    _getAnswers(context),
                     SizedBox(height: 15.h,),
                   ],
                 ),
@@ -459,9 +461,9 @@ class _PracticePageState extends State<PracticePage> {
     );
   }
 
-  Widget _getAnswers() {
+  Widget _getAnswers( BuildContext context) {
     List<Widget> list = <Widget>[];
-    for (var i = 0; i < unit.exercises[counter].answers.length; i++) {
+    for (var i = 0; i < widget.unit.exercises[counter].answers.length; i++) {
       list.add(
         Column(
           children:
@@ -476,7 +478,7 @@ class _PracticePageState extends State<PracticePage> {
                         borderRadius: BorderRadius.circular(10)
                     ),
                     child:Center(
-                      child:Text(unit.exercises[counter].answers[i],
+                      child:Text(widget.unit.exercises[counter].answers[i],
                         style: TextStyle(
                             color: white,
                             fontSize: 18,
@@ -485,7 +487,7 @@ class _PracticePageState extends State<PracticePage> {
                     )
                 ),
                 onTap: (){
-                  check(unit.exercises[counter].answers[i]);
+                  check(widget.unit.exercises[counter].answers[i], context);
                 },
               ),
               SizedBox(height: 15.h,),
@@ -498,14 +500,14 @@ class _PracticePageState extends State<PracticePage> {
     );
   }
 
-  _buildQuestions(String type) {
+  _buildQuestions(String type, BuildContext context) {
     switch (type) {
       case "dd":
-        return _buildDragAndDrop();
+        return _buildDragAndDrop(context);
       case "tf":
-        return _buildTrueFalse();
+        return _buildTrueFalse(context);
       case "4":
-        return _buildMultipleChoice();
+        return _buildMultipleChoice(context);
     }
   }
 
@@ -518,14 +520,14 @@ class _PracticePageState extends State<PracticePage> {
     }
 
     _initVariables() {
-      maxNumber = unit.exercises.length;
+      maxNumber = widget.unit.exercises.length;
     }
 
     @override
     Widget build(BuildContext context) {
       return Scaffold(
           backgroundColor: backgroundColor,
-          body: SingleChildScrollView(child: _buildBody(),)
+          body: SingleChildScrollView(child: _buildBody(context),)
       );
     }
   }
