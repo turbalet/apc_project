@@ -1,4 +1,6 @@
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/auth_reg/services/auth_service.dart';
+import 'package:apc_project/ui/landing/landing_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -85,7 +87,34 @@ class EditBody extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     color: Colors.white),
               )),
+
         ],
+      ),
+    );
+  }
+
+  _buildLogOut(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        AuthService authService = AuthService();
+        authService.logOut();
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => LandingPage()));
+      },
+      child: Container(
+        height: 61.h,
+        width: 367.w,
+        decoration: BoxDecoration(
+            color: red, borderRadius: BorderRadius.circular(20.r)),
+        child: Center(
+          child: Text(
+            "Выйти",
+            style: GoogleFonts.roboto(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.bold,
+                color: Colors.white),
+          ),
+        ),
       ),
     );
   }
@@ -93,7 +122,7 @@ class EditBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [_buildChangePassword()],
+      children: [_buildChangePassword(), SizedBox(height: 40.h),_buildLogOut(context)],
     );
   }
 }

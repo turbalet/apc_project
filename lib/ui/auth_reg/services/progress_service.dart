@@ -3,18 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class ProgressService {
 
-  final firestoreInstance = FirebaseFirestore.instance;
-  final user = FirebaseAuth.instance.currentUser;
+  static final firestoreInstance = FirebaseFirestore.instance;
+  static final user = FirebaseAuth.instance.currentUser;
 
 
-  getProgress() async{
+  static getProgress() async{
     var document = await FirebaseFirestore.instance.collection('progresses').doc(user!.uid);
     document.get().then((d) {
       print(d.data());
     });
   }
 
-  setProgress(String unit, int earnedScore) {
+  static setProgress(String unit, int earnedScore) {
     var progress = getProgress();
     int score = progress['score'] + earnedScore;
     firestoreInstance

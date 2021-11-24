@@ -119,20 +119,20 @@ class AuthorizationRegistration extends StatelessWidget {
               color: white,
               fontSize: 14,)),
           SizedBox(height: 10,),
-          GestureDetector(
-            child: Container(
-              height: 52,
-              width: 83,
-              decoration: BoxDecoration(
-                color: backgroundItem,
-                borderRadius: const BorderRadius.all(Radius.circular(15)),
-              ),
-              child: const Image(image: AssetImage('assets/images/google.png')),
-            ),
-            onTap: (){
-              _authService.googleSignIn(context1);
-            },
-          ),
+          // GestureDetector(
+          //   child: Container(
+          //     height: 52,
+          //     width: 83,
+          //     decoration: BoxDecoration(
+          //       color: backgroundItem,
+          //       borderRadius: const BorderRadius.all(Radius.circular(15)),
+          //     ),
+          //     child: const Image(image: AssetImage('assets/images/google.png')),
+          //   ),
+          //   onTap: (){
+          //     _authService.googleSignIn(context1);
+          //   },
+          // ),
           SizedBox(height: 10,),
           Container(
               child: Column(
@@ -218,20 +218,20 @@ class AuthorizationRegistration extends StatelessWidget {
             color: white,
             fontSize: 14,)),
           SizedBox(height: 10,),
-          GestureDetector(
-            child: Container(
-              height: 52,
-              width: 83,
-              decoration: BoxDecoration(
-                color: backgroundItem,
-                borderRadius: const BorderRadius.all(Radius.circular(15)),
-              ),
-              child: const Image(image: AssetImage('assets/images/google.png')),
-            ),
-            onTap: (){
-              _authService.googleSignIn(context1);
-            },
-          ),
+          // GestureDetector(
+          //   child: Container(
+          //     height: 52,
+          //     width: 83,
+          //     decoration: BoxDecoration(
+          //       color: backgroundItem,
+          //       borderRadius: const BorderRadius.all(Radius.circular(15)),
+          //     ),
+          //     child: const Image(image: AssetImage('assets/images/google.png')),
+          //   ),
+          //   onTap: (){
+          //     _authService.googleSignIn(context1);
+          //   },
+          // ),
           SizedBox(height: 10,),
           Container(
               child: Column(

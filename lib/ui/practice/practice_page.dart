@@ -1,9 +1,11 @@
 import 'dart:io';
 
-import 'package:apc_project/data/model/exercise.dart';
 import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/auth_reg/services/progress_service.dart';
 import 'package:apc_project/ui/practice/score_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +16,8 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 class PracticePage extends StatefulWidget {
 
   Unit unit;
-  PracticePage({Key? key, required this.unit}) : super(key: key);
+  var progress =  <String, dynamic>{ "score": "", "unit" : "", "chapter": ""};
+  PracticePage({Key? key, required this.unit, required this.progress}) : super(key: key);
 
   @override
   _PracticePageState createState() => _PracticePageState();
@@ -25,7 +28,8 @@ class _PracticePageState extends State<PracticePage> {
 
 
   int counter = 0;
-  var score = 0;
+
+  int score = 0;
   var streak = 0;
   String received = "";
   bool accepting = false;
@@ -33,6 +37,9 @@ class _PracticePageState extends State<PracticePage> {
   int maxNumber = 0;
 
   _positiveSnack(BuildContext context) async {
+
+    streak++;
+    score += 40 + ((streak >=5 ) ? 3*streak : 0);
     final snackbar = SnackBar(
       content:
       Row(
@@ -51,15 +58,25 @@ class _PracticePageState extends State<PracticePage> {
     setState(() {
       if (counter + 1 <= widget.unit.exercises.length) {
         if (counter + 1 == widget.unit.exercises.length) {
+          final firestoreInstance = FirebaseFirestore.instance;
+          var user = FirebaseAuth.instance.currentUser;
+          int d = score + int.parse(widget.progress['score'].toString());
+          print(d);
+          print(score);
+          print(score.toString());
+          firestoreInstance
+              .collection("progresses")
+              .doc(user!.uid)
+              .update({"score": d, "unit": (double.parse(widget.unit.id) + 0.1 - 0.0000000000000002).toString()}).then((_) {
+            print("success!");
+          });
           Navigator.push(context, MaterialPageRoute(
-              builder: (context) => ScorePage(unit: widget.unit, score: score)));
+              builder: (context) => ScorePage(unit: widget.unit, score: score)),);
         }
         if (counter + 1 != widget.unit.exercises.length) {
           counter++;
         }
 
-        streak++;
-        score += 40 + ((streak >=5 ) ? 3*streak : 0);
       }
     });
   }
@@ -122,10 +139,15 @@ class _PracticePageState extends State<PracticePage> {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.arrow_back_ios_rounded,
-                        size: 20.w,
-                        color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_rounded,
+                          size: 20.w,
+                          color: Colors.white,
+                        ),
                       ),
                       SizedBox(width: 15.w,),
                       Text(
@@ -134,32 +156,7 @@ class _PracticePageState extends State<PracticePage> {
                       ),
                     ],
                   ),
-                  Container(
-                    height: 45.h,
-                    width: 122.w,
-                    decoration: BoxDecoration(
-                        color: backgroundItem,
-                        borderRadius: BorderRadius.circular(30.r)
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 26.w),
-                      child:
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Icon(
-                            Icons.star_rounded,
-                            size: 22.w,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            "2222",
-                            style: GoogleFonts.roboto(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 22.sp),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
+
                 ],
               ),
               SizedBox(height: 57.h),

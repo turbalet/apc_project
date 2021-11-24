@@ -165,7 +165,11 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               Column(
                                 children: [
-                                  Text("Глава " + progress['chapter'] + "\nУрок " + progress['unit'], style: GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 34.sp, color: Colors.white),),
+
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 30.h),
+                                    child: Text("Глава " + progress['chapter'], style: GoogleFonts.roboto(fontWeight: FontWeight.bold, fontSize: 34.sp, color: Colors.white),),
+                                  ),
                                 ],
                               ),
                               Image(width: 206.w, height: 165.h, image: AssetImage("assets/images/nedav.png"))

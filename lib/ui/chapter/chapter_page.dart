@@ -2,6 +2,7 @@ import 'package:apc_project/data/model/chapter.dart';
 import 'package:apc_project/foundation/constants.dart';
 import 'package:apc_project/ui/components/bottom_nav_bar.dart';
 import 'package:apc_project/ui/lecture/lecture_page.dart';
+import 'package:apc_project/ui/practice/practice_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -133,7 +134,9 @@ class _ChapterPageState extends State<ChapterPage> {
                                   color: Colors.white),
                             )),
                         ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => PracticePage(unit: widget.chapter.units[index], progress: progress)));
+                            },
                             style: ElevatedButton.styleFrom(
                               primary: primaryWithOp,
                                 shape: RoundedRectangleBorder(

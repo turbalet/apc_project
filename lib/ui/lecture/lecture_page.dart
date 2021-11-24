@@ -318,7 +318,7 @@ class _LecturePageState extends State<LecturePage> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => PracticePage(unit: widget.unit)));
+                            builder: (context) => PracticePage(unit: widget.unit, progress: progress)));
                       },
                       child: Container(
                         width: 240.w,
@@ -728,7 +728,7 @@ class _LecturePageState extends State<LecturePage> {
                     child: GestureDetector(
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
-                            builder: (context) => PracticePage(unit: widget.unit)));
+                            builder: (context) => PracticePage(unit: widget.unit, progress: progress)));
                       },
                       child: Container(
                         width: 240.w,

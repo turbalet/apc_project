@@ -1,6 +1,7 @@
 // ignore: file_names
 import 'package:apc_project/data/model/unit.dart';
 import 'package:apc_project/foundation/constants.dart';
+import 'package:apc_project/ui/components/bottom_nav_bar.dart';
 import 'package:apc_project/ui/lecture/lecture_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,11 +18,11 @@ class ScorePage extends StatefulWidget {
 
 class _ScorePage extends State<ScorePage> {
 
-  var score = 0;
 
 
   _buildBody() {
-    score = widget.score;
+    print("dssd");
+    print(widget.score);
     return SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 27.w),
@@ -65,7 +66,7 @@ class _ScorePage extends State<ScorePage> {
                       fontWeight: FontWeight.bold
                     ),),
                     SizedBox(height: 30.h),
-                    const Image(image: AssetImage('assets/images/birthday.png'), ),
+                     Image(image: AssetImage('assets/images/birthday.png'), width: 300.w,),
                     SizedBox(height: 40.h),
                     Row(
                       children: [
@@ -76,7 +77,7 @@ class _ScorePage extends State<ScorePage> {
                           color: Colors.white,
                         ),
                         Text(
-                          " + " + score.toString(),
+                          " + " + widget.score.toString(),
                           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 30.sp),
                         ),
                         Expanded(child: Container()),
@@ -91,7 +92,7 @@ class _ScorePage extends State<ScorePage> {
                               ElevatedButton(
                                 onPressed: () {
                                   Navigator.push(context, MaterialPageRoute(
-                                      builder: (context) => LecturePage(unit: Unit.getUnit((double.parse(widget.unit.id) + 0.1).toString()),)));
+                                      builder: (context) => LecturePage(unit: Unit.getUnit((double.parse(widget.unit.id) + 0.1 - 0.0000000000000002).toString()),)));
                                 },
                                 child:   Image(image: AssetImage('assets/images/gofurther.png', ), height:90.h,width:90.w),
                                 style: ButtonStyle(
@@ -131,6 +132,7 @@ class _ScorePage extends State<ScorePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor,
+      bottomNavigationBar: BottomNavBar(),
       body: SingleChildScrollView(child: _buildBody(),),
     );
   }
